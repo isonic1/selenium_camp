@@ -1,7 +1,5 @@
 require 'appium_lib'
-require_relative 'locators_and_helpers' #not included in repo.
-
-ENV['SAUCE_ACCESS_KEY'] = nil
+require_relative 'locators_and_helpers' #not included in this repo.
 
 describe 'Test with the API' do
 
@@ -18,7 +16,7 @@ describe 'Test with the API' do
     driver_quit
   end
   
-  it 'Receive a Shared List - The Fast Way!' do
+  it 'Receive a Shared List - The Fast API Way!' do
     wait { find_element(SIGNIN_BUTTON_LOCATOR) }
     find_element(SIGNIN_BUTTON_LOCATOR).click
     find_element(EMAIL_TEXTFIELD_LOCATOR).type "camp@selenium.com"

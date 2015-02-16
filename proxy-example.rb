@@ -1,9 +1,7 @@
 require 'appium_lib'
 require 'webrick'
 require 'webrick/httpproxy'
-require_relative 'locators_and_helpers' #not included in repo.
-
-ENV['SAUCE_ACCESS_KEY'] = nil
+require_relative 'locators_and_helpers' #not included in this repo.
 
 def content
   inspector = proc do |req, res|
@@ -15,12 +13,10 @@ def content
   end
 end
 
+#make sure you enable your pc's http web proxy to 127.0.0.1:8888
 proxy = WEBrick::HTTPProxyServer.new Logger: WEBrick::Log.new("/dev/null"), AccessLog: [], Port: 8888, ProxyContentHandler: content
 
 RSpec.configure do |config|
-  
-  config.formatter = :documentation
-  config.color = true
 
   config.before :all do
     @t1 = Thread.new { proxy.start }

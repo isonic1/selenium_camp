@@ -1,8 +1,6 @@
 require 'appium_lib'
-require_relative 'locators_and_helpers' #not included in repo.
+require_relative 'locators_and_helpers' #not included in this repo.
 
-ENV['SAUCE_ACCESS_KEY'] = nil
-      
 describe 'Test without the API' do
 
   before :each do
@@ -17,7 +15,7 @@ describe 'Test without the API' do
     driver_quit
   end  
   
-  it 'Receive a Shared List - The Long Way!' do
+  it 'Receive a Shared List - The Long UI Way!' do
     #login as user1
     wait { find_element(SIGNIN_BUTTON_LOCATOR) }
     find_element(SIGNIN_BUTTON_LOCATOR).click

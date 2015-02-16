@@ -2,6 +2,8 @@ require 'selenium-webdriver'
 require 'httparty'
 require 'rspec'
 
+#https://code.google.com/p/selenium/wiki/JsonWireProtocol
+
 def api_page_title
   HTTParty.get("#{@server_url}/session/#{@web.send(:bridge).session_id}/title")["value"]
 end
@@ -31,7 +33,7 @@ describe 'Web Using Selenium API' do
     @web.quit
   end
   
-  it 'Navigate a Web Page with API Calls' do
+  it 'Navigate a Web Page with the Selenium API' do
     expect(api_page_title).to eq "Wunderlist | To-do list, Reminders, Errands - App of the Year!"
     api_click api_find(using: "link text", value: "Create a free account")
     @wait.until { api_find(using: "link text", value: "Forgot your password?") }

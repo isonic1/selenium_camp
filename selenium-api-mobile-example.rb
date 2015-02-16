@@ -1,8 +1,6 @@
 require 'appium_lib'
 require 'httparty'
-require_relative 'locators_and_helpers' #not included in repo.
-
-ENV['SAUCE_ACCESS_KEY'] = nil
+require_relative 'locators_and_helpers' #not included in this repo.
 
 #https://code.google.com/p/selenium/wiki/JsonWireProtocol
 
@@ -26,7 +24,7 @@ def api_insert_text(id, text) #same as .send_keys
   HTTParty.post("#{@driver.server_url}/session/#{@driver.session_id}/element/#{id}/value", body: { value: [text] }.to_json)
 end
 
-describe 'Reset Password Using Selenium API' do
+describe 'Reset Password Using the Selenium API' do
   
   before :each do
     caps = Appium.load_appium_txt file: File.join('appium')

@@ -32,7 +32,7 @@ RSpec.configure do |config|
   end
 end
 
-describe 'Validate Reset Password Endpoint', :regression do
+describe 'Validate Reset Password Endpoint' do
   
   before :all do
     find_element(SIGNIN_BUTTON_LOCATOR).click

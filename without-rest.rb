@@ -4,6 +4,7 @@ require_relative 'locators_and_helpers' #not included in this repo.
 describe 'Test without the API' do
 
   before :each do
+    ENV['SAUCE_ACCESS_KEY'] = nil
     caps = Appium.load_appium_txt file: File.join('appium')
     caps[:caps][:app] = ENV["WL_IOS"] #env variable path to your binary
     Appium::Driver.new(caps).start_driver

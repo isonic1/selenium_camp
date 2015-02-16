@@ -20,6 +20,7 @@ RSpec.configure do |config|
 
   config.before :all do
     @t1 = Thread.new { proxy.start }
+    ENV['SAUCE_ACCESS_KEY'] = nil
     caps = Appium.load_appium_txt file: File.join('appium')
     caps[:caps][:app] = ENV["WL_IOS"] #env variable path to your binary
     Appium::Driver.new(caps).start_driver

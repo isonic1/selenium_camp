@@ -1,5 +1,4 @@
 require 'selenium-webdriver'
-require 'httparty'
 require 'rspec'
 
 def api_page_title

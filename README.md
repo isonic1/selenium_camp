@@ -3,7 +3,7 @@
 ### Information
 	* https://saucelabs.com/resources/appium-bootcamp (Get Started with Appium)
 	* https://code.google.com/p/selenium/wiki/JsonWireProtocol (Selenium API Protocol)
-		![alt tag](https://github.com/isonic1/selenium_camp/blob/master/element_strategy.png)
+		![alt tag](https://github.com/isonic1/selenium_camp/blob/master/screenshot.png)
 		
 ### Requirements 
 	* Ruby 2.0 or greater

@@ -13,4 +13,4 @@
 ### Run Proxy Script
 	* $ appium (start server in seperate terminal)
 	* Enable your HTTP Web Proxy, set IP: 127.0.0.1 & Port: 8888
-	* $ ruby proxy-example.rb
+	* $ rspec proxy-example.rb

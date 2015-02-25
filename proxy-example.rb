@@ -1,7 +1,7 @@
 require 'appium_lib'
 require 'webrick'
 require 'webrick/httpproxy'
-require_relative 'locators_and_helpers' #not included in this repo.
+require_relative 'locators_and_helpers'
 
 def content
   inspector = proc do |req, res|
@@ -13,24 +13,18 @@ def content
   end
 end
 
-#make sure you enable your pc's http web proxy to 127.0.0.1:8888
 proxy = WEBrick::HTTPProxyServer.new Logger: WEBrick::Log.new("/dev/null"), AccessLog: [], Port: 8888, ProxyContentHandler: content
 
 RSpec.configure do |config|
 
   config.before :all do
     @t1 = Thread.new { proxy.start }
-    ENV['SAUCE_ACCESS_KEY'] = nil
     caps = Appium.load_appium_txt file: File.join('appium')
     caps[:caps][:app] = ENV["WL_IOS"] #env variable path to your binary
     Appium::Driver.new(caps).start_driver
     Appium.promote_appium_methods Object
   end
-
-  config.after :all do
-    driver_quit
-    @t1.terminate
-  end
+  config.after(:all) { driver_quit; @t1.terminate }
 end
 
 describe 'Validate Reset Password Endpoint' do
@@ -43,7 +37,7 @@ describe 'Validate Reset Password Endpoint' do
     find_element(RESET_PASSWORD_BUTTON_LOCATOR).click
     find_element(DISMISS_POPUP_LOCATOR).click
   end
-  
+
   it { expect($req.request_method).to eq "POST" }
   it { expect($req.path).to eq "/api/v1/user/password/reset" }
   it { expect($req.body).to eq "{\"email\":\"#{@email}\"}" }

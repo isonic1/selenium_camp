@@ -2,8 +2,6 @@ require 'selenium-webdriver'
 require 'httparty'
 require 'rspec'
 
-#https://code.google.com/p/selenium/wiki/JsonWireProtocol
-
 def api_page_title
   HTTParty.get("#{@server_url}/session/#{@web.send(:bridge).session_id}/title")["value"]
 end

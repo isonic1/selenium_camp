@@ -1,10 +1,9 @@
 require 'appium_lib'
-require_relative 'locators_and_helpers' #not included in this repo.
+require_relative 'locators_and_helpers'
 
 describe 'Test with the API' do
 
   before :each do
-    ENV['SAUCE_ACCESS_KEY'] = nil
     caps = Appium.load_appium_txt file: File.join('appium')
     caps[:caps][:app] = ENV["WL_IOS"] #env variable path to your binary
     Appium::Driver.new(caps).start_driver
@@ -13,9 +12,7 @@ describe 'Test with the API' do
     api_share_a_list_to_me @list, "camp@selenium.com" #eliminated 20+ test steps.
   end
   
-  after :each do
-    driver_quit
-  end
+  after(:each) { driver_quit }
   
   it 'Receive a Shared List - The Fast API Way!' do
     wait { find_element(SIGNIN_BUTTON_LOCATOR) }
@@ -24,6 +21,6 @@ describe 'Test with the API' do
     find_element(PASSWORD_TEXTFIELD_LOCATOR).type "selenium"
     find_element(LOGIN_BUTTON_LOCATOR).click
     wait { find_element(ADD_ITEM_BUTTON_LOCATOR) } #Wait until fully logged in.
-    expect(exists{find_elements(LIST_INVITE_NAME_LOCATOR).find { |x| x.label == "Invite #{@list}" }}).to eq true #This is the end goal!
+    expect(exists{find_elements(LIST_INVITE_NAME_LOCATOR).find { |x| x.label == "Invite #{@list}" }}).to eq true
   end
 end

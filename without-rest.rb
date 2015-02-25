@@ -1,10 +1,9 @@
 require 'appium_lib'
-require_relative 'locators_and_helpers' #not included in this repo.
+require_relative 'locators_and_helpers'
 
 describe 'Test without the API' do
 
   before :each do
-    ENV['SAUCE_ACCESS_KEY'] = nil
     caps = Appium.load_appium_txt file: File.join('appium')
     caps[:caps][:app] = ENV["WL_IOS"] #env variable path to your binary
     Appium::Driver.new(caps).start_driver
@@ -40,8 +39,8 @@ describe 'Test without the API' do
     find_element(SETTINGS_BUTTON_LOCATOR).click
     wait { find_element(LOGOUT_BUTTON_LOCATOR) }
     find_element(LOGOUT_BUTTON_LOCATOR).click
-    #login as user2
     wait_true { !exists { find_element(LOGOUT_TEXT_LOCATOR) } }
+    #login as user2
     find_element(SIGNIN_BUTTON_LOCATOR).click
     wait { find_element(NOTNOW_BUTTONL_LOCATOR) }
     find_element(NOTNOW_BUTTONL_LOCATOR).click
@@ -50,6 +49,6 @@ describe 'Test without the API' do
     find_element(PASSWORD_TEXTFIELD_LOCATOR).type "selenium"
     find_element(LOGIN_BUTTON_LOCATOR).click
     wait { find_element(ADD_ITEM_BUTTON_LOCATOR) } #Wait until fully logged in.
-    expect(exists{find_elements(LIST_INVITE_NAME_LOCATOR).find { |x| x.label == "Invite #{@list}" }}).to eq true #This is the end goal!
+    expect(exists{find_elements(LIST_INVITE_NAME_LOCATOR).find { |x| x.label == "Invite #{@list}" }}).to eq true #This is the goal!
   end
 end

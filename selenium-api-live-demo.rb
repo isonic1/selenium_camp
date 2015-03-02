@@ -37,8 +37,7 @@ end
 
 caps = Appium.load_appium_txt file: File.join('appium')
 caps[:caps][:app] = ENV["WL_IOS"] #env variable path to your binary
-caps[:caps][:newCommandTimeout] ='9999'
-@driver = Appium::Driver.new(caps).start_driver
+Appium::Driver.new(caps).start_driver
 Appium.promote_appium_methods Object
 
 api_click api_find(using: "id", value: 'button_sign_in')
@@ -46,4 +45,4 @@ api_click api_find(using: "id", value: 'login_forgot_password')
 api_insert_text api_find(using: "id", value: 'group_billing_email_address_input_placeholder'), "hello@seleniumcamp.com"
 api_click api_find(using: "id", value: 'label_reset_password')
 puts "#{api_get_text api_find_all(using: "class name", value: "UIAStaticText")[-1]}".green if !api_find_all(using: "class name", value: "UIAStaticText")[-1].nil?
-@driver.driver_quit
+driver_quit

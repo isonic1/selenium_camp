@@ -3,6 +3,7 @@
 ### Information
 	* https://saucelabs.com/resources/appium-bootcamp (Get Started with Appium)
 	* https://code.google.com/p/selenium/wiki/JsonWireProtocol (Selenium API Protocol)
+	* http://www.slideshare.net/justinison75/selenium-camp / Selenium Camp slides
 		
 ![alt tag](https://github.com/isonic1/selenium_camp/blob/master/screenshot.png)
 

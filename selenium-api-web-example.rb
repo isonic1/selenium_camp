@@ -31,9 +31,7 @@ describe 'Web Using Selenium API' do
     @web.navigate.to "https://www.wunderlist.com"
   end
   
-  after :each do
-    @web.quit
-  end
+  after(:each) do @web.quit end
   
   it 'Navigate a Web Page with the Selenium API' do
     expect(api_page_title).to eq "Wunderlist | To-do list, Reminders, Errands - App of the Year!"

@@ -1,4 +1,5 @@
 require 'appium_lib'
+require 'httparty'
 require_relative 'locators_and_helpers'
 
 def api_find(body = {}) #same as find_element
